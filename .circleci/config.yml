@@ -9,7 +9,6 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
           name: "Say hello again"
           command: echo hello $CIRCLE_CI_OWNER
@@ -17,7 +16,6 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - run:
           name: "world"
           command: echo "world" > output.txt
@@ -40,6 +38,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - print_hello
-      - print_world:
+      - print_world
+      - print_output_file:
           requires:
-            - print_hello
+            - print_world

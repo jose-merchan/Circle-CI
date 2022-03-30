@@ -19,7 +19,7 @@ jobs:
           command: "echo Hello, World!"
   print_hello:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - run:
@@ -27,7 +27,7 @@ jobs:
           command: "echo hello"
   print_world:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - run:

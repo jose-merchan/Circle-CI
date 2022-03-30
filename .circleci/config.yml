@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello again"
-          command: "echo hello $CIRCLE_CI_OWNER"
+          command: echo hello $CIRCLE_CI_OWNER
   print_world:
     docker:
       - image: cimg/node:13.8.0
@@ -20,7 +20,12 @@ jobs:
       - checkout
       - run:
           name: "world"
-          command: "echo world"
+          command: echo "world" > output.txt
+      # save the files your deploy step needs
+      - save_workspace:
+          root: .     # relative path to our working directory
+          paths:      # file globs which will be persisted to the workspace
+           - output.txt
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:

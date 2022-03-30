@@ -20,10 +20,10 @@ jobs:
           name: "world"
           command: echo "world" > output.txt
       # save the files your deploy step needs
-      - save_workspace:
+      - persist_to_workspace:
           root: .     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
-           - output*
+           - output.txt
   print_output_file:
     docker:
       - image: cimg/base:stable

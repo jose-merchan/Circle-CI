@@ -12,6 +12,18 @@ commands:
       - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
+  error_prompter:
+    docker:
+    - image: circleci/node:13.8.0
+    steps:
+      - run:
+         name: 'Failing'
+         command: nan text.txt
+      - run:
+         name: 'Catching Failures'
+         command: echo "previous job failed"
+         when: on_fail
+
   print_hello:
     docker:
       - image: cimg/base:stable
@@ -42,6 +54,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
+      - error_prompter
       - print_hello
       - print_world
       - print_output_file:

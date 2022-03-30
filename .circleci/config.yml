@@ -23,7 +23,7 @@ jobs:
       - save_workspace:
           root: .     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
-           - *.txt
+           - output*
   print_output_file:
     docker:
       - image: cimg/base:stable
